@@ -67,12 +67,13 @@ $db_host = 'localhost';
           <div class="row text-center">
             <div class="col-md-12">
               <div class="panel panel2">
-                <form class="update-pro-form" method="post" action="quiz_details.php">
+                <form class="update-pro-form" method="post" action="/student/quiz_details">
+                  @csrf
                   <label>Select Department</label>
                       <select id="inputState3" name="dep" class="col-sm-12 form-control" required="true">
                         <option value="">Choose...</option>
                         <?php 
-                        $data = mysqli_query($sql_con,"Select *from departments");
+                        $data = mysqli_query($sql_con,"Select *from departments where deleted_at is null");
                         if (!$data) {
                               die('Query error: ' . mysqli_error($sql_con));
                           }
@@ -85,7 +86,7 @@ $db_host = 'localhost';
                       <select id="inputState1" disabled name="session" class="col-sm-12 form-control" required="true">
                         <option value="">Choose...</option>
                         <?php 
-                          $data = mysqli_query($sql_con,"Select *from sessions");
+                          $data = mysqli_query($sql_con,"Select *from sessions where deleted_at is null");
                           if (!$data) {
                               die('Query error: ' . mysqli_error($sql_con));
                           }
@@ -97,10 +98,28 @@ $db_host = 'localhost';
                       <label>Select Semester</label>
                       <select disabled id="inputStateSemester" name="semester" class="col-sm-12 form-control" required="true">
                         <option value="">Choose...</option>
+                        <?php 
+                        $data = mysqli_query($sql_con,"Select *from semesters where deleted_at is null");
+                        if (!$data) {
+                              die('Query error: ' . mysqli_error($sql_con));
+                          }
+                        while ($row = mysqli_fetch_array($data)){
+                         ?>
+                          <option value="<?php echo $row['id'] ?>"><?php echo $row['semester'] ?></option>
+                        <?php } ?>
                       </select><br>
                        <label>Select Subject</label>
                       <select disabled id="inputStateSubject" name="subject" class="col-sm-12 form-control" required="true">
                         <option value="">Choose...</option>
+                        <?php 
+                        $data = mysqli_query($sql_con,"Select *from subjects where deleted_at is null");
+                        if (!$data) {
+                              die('Query error: ' . mysqli_error($sql_con));
+                          }
+                        while ($row = mysqli_fetch_array($data)){
+                         ?>
+                          <option value="<?php echo $row['id'] ?>"><?php echo $row['sname'] ?></option>
+                        <?php } ?>
                       </select><br>
                 <center>
                     <input name="submit" type="submit" class="btn btn-outline-primary btn-rounded profile-btns" value="Check Quiz">

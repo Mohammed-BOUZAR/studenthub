@@ -1,4 +1,4 @@
-@include('teachers.include.header');
+@include('teachers.include.header')
 <?php
 $db_username = 'root';
 $db_password = '';
@@ -31,7 +31,8 @@ $db_host = 'localhost';
                   </ul>
                 </div>
                 <br>
-                <form class="update-pro-form form-group" action="" method="post" enctype="multipart/form-data">
+                <form class="update-pro-form form-group" action="/teacher/add_noticeboard" method="post" enctype="multipart/form-data">
+                  @csrf
                       <label>Select File</label>
                       <div class="file-loading">
                         <input name="fl" type="file" class="file" id="test-upload" multiple data-theme="fas" required>

@@ -37,7 +37,7 @@ $db_host = 'localhost';
                       </thead>
                       <tbody>
                         <?php  
-                        $data = mysqli_query($sql_con,"SELECT * FROM noticeboards");
+                        $data = mysqli_query($sql_con,"SELECT * FROM noticeboards where deleted_at is null");
                         if (!$data) {
                                     die('Query error: ' . mysqli_error($sql_con));
                                 }
@@ -47,8 +47,7 @@ $db_host = 'localhost';
                           <td><?php echo $row['id']; ?></td>
                           <td>
                           <?php 
-                          $file2 = $row['file'];
-                          $file = "../admin/".$file2;
+                          $file = $row['file'];
                           
                           $filetype = strtolower(pathinfo($file,PATHINFO_EXTENSION));
                             if ($filetype =="jpg" || $filetype =="png" || $filetype =="jpeg") {
@@ -65,7 +64,7 @@ $db_host = 'localhost';
                           <td><?php echo $row['dis']; ?></td>
                           <td><?php echo $row['ndatetime']; ?></td>
                           <td>
-                            <a href="update_noticeboard.php?value=<?php echo $row['id'] ?>" class="btn btn-outline-primary btn-rounded"><i class="fa fa-edit"></i></a>
+                            <a href="update_noticeboard/<?php echo $row['id'] ?>" class="btn btn-outline-primary btn-rounded"><i class="fa fa-edit"></i></a>
                             <a href="" class="btn btn-outline-danger btn-rounded" data-toggle = "modal" data-target= "#exampleModaldep<?php echo $row['id'];?>"><i class="fa fa-trash"></i></a>
 
                             <!-- MODEL -->
@@ -82,7 +81,7 @@ $db_host = 'localhost';
                                 Do you really want to delete this file?
                               </div>
                               <div class="modal-footer">
-                                <a href="delete_noticeboard.php?value=<?php echo $row['id'] ?>" class="btn btn-outline-primary btn-rounded">YES</a>
+                                <a href="delete_noticeboard/<?php echo $row['id'] ?>" class="btn btn-outline-primary btn-rounded">YES</a>
                                 <button type="button" class="btn btn-outline-danger btn-rounded" data-dismiss="modal">NO</button>
                               </div>
                             </div>

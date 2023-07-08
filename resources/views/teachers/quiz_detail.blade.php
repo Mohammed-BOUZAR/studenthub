@@ -1,8 +1,6 @@
-<?php 
-include('include/session.php');
- ?>
+
 <html>
-<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 <style type="text/css">
 	body{
 		text-align: center;
@@ -26,10 +24,10 @@ $db_name = 'studenthub';
 $db_host = 'localhost';
 ($sql_con = mysqli_connect($db_host, $db_username, $db_password, $db_name)) or die('could not connect to database');
 
-if (isset($_GET['value'])) {
-	$id = $_GET['value'];
-	$data = mysqli_query($sql_con,"Select *from quiz where id ='$id'");
-}
+// if (isset($_GET['value'])) {
+	// $id = $_GET['value'];
+	$data = mysqli_query($sql_con,"Select *from quizzes where id ='$id' and deleted_at is null");
+// }
  ?>
  <h1>Quiz Details</h1>
  <div class="table-responsive">
@@ -79,14 +77,14 @@ if (isset($_GET['value'])) {
         Do you really want to delete quiz?
       </div>
       <div class="modal-footer">
-        <a href="delete_quiz.php?value=<?php echo $id ?>" class="btn btn-outline-primary">YES</a>
+        <a href="delete_quiz/<?php echo $id ?>" class="btn btn-outline-primary">YES</a>
         <button type="button" class="btn btn-outline-danger" data-dismiss="modal">NO</button>
       </div>
     </div>
   </div>
 </div>
-<script src="../js/jquery-3.3.1.min.js"></script>
-<script src="../js/popper.min.js"></script>
-<script src="../js/bootstrap.min.js"></script>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
 
 </html>

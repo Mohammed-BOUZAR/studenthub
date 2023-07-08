@@ -1,4 +1,4 @@
-@include('students.include.header');
+@include('students.include.header')
 <?php
 $db_username = 'root';
 $db_password = '';
@@ -7,17 +7,17 @@ $db_host = 'localhost';
 ($sql_con = mysqli_connect($db_host, $db_username, $db_password, $db_name)) or die('could not connect to database');
 ?>
 <?php 
-  if (isset($_POST['submit'])) {
-    $dep = $_POST['dep'];
-    $sec = $_POST['session'];
-    $sem = $_POST['semester'];
-    $sub = $_POST['subject'];
+  // if (isset($_POST['submit'])) {
+    $dep = $dep;
+    $sec = $session;
+    $sem = $semester;
+    $sub = $subject;
     date_default_timezone_set("Asia/Karachi");
     $mydate = date("Y-m-d");
-  }
-  else{
-    echo "<script>window.location='check_quiz.php'</script>";
-  }
+  // }
+  // else{
+  //   echo "<script>window.location='check_quiz.php'</script>";
+  // }
  ?>
 
 <!-- partial -->
@@ -63,17 +63,19 @@ $db_host = 'localhost';
                         <?php
                         // TEST CODE
                         $sid = session('sid');
-                        $myquery = mysqli_query($sql_con,"Select dep from students where id = '$sid'");
+                        $myquery = mysqli_query($sql_con,"Select dep from students where id = '$sid' and deleted_at is null");
                         $srow = mysqli_fetch_array($myquery);
                         $namedep = $srow['dep'];
 
 
                         // TEST CODE
-                        $query2 = mysqli_query($sql_con,"SELECT *, id AS id FROM quiz where department = '$namedep' AND session = '$sec' AND semester = '$sem' AND subject = '$sub' AND quizdate = '$mydate' GROUP BY id");
+                        $query2 = mysqli_query($sql_con,"SELECT * FROM quizzes where department = '$namedep' AND session = '$sec' AND semester = '$sem' AND subject = '$sub' AND quizdate = '$mydate' and deleted_at is null");
+                        // print_r($query2);
+                        // echo "'$namedep' '$sec'  '$sem'  '$sub' '$mydate'";
                         $row = mysqli_num_rows($query2);
                         if($row <= 0){
                             echo "<script>alert('Quiz not available or invalid department')</script>";
-                            echo "<script>window.location='check_quiz.php'</script>";
+                            // echo "<script>window.location='check_quiz.php'</script>";
                             exit();
                            }
                         if($row > 0){
@@ -85,19 +87,19 @@ $db_host = 'localhost';
                            $depid = $subrow['department'];
                            $subid = $subrow['subject'];
 
-                           $datasub = mysqli_query($sql_con,"select *from subjects where id = '$subid'");
+                           $datasub = mysqli_query($sql_con,"select *from subjects where id = '$subid' and deleted_at is null");
                            $subfetch = mysqli_fetch_array($datasub);
                            $subname = $subfetch['sname'];
 
-                           $data = mysqli_query($sql_con,"select *from semester where id = '$semid'");
+                           $data = mysqli_query($sql_con,"select *from semesters where id = '$semid' and deleted_at is null");
                            $semfetch = mysqli_fetch_array($data);
                            $semname = $semfetch['semester'];
 
-                           $data2 = mysqli_query($sql_con,"select *from session where id = '$sessid'");
+                           $data2 = mysqli_query($sql_con,"select *from sessions where id = '$sessid' and deleted_at is null");
                            $row2 = mysqli_fetch_array($data2);
                            $sessname = $row2['session'];
 
-                           $data3 = mysqli_query($sql_con,"select *from departments where id = '$depid'");
+                           $data3 = mysqli_query($sql_con,"select *from departments where id = '$depid' and deleted_at is null");
                            $row3 = mysqli_fetch_array($data3);
                            $depname = $row3['depname'];
                          ?>
@@ -110,7 +112,7 @@ $db_host = 'localhost';
                           <td><?php echo $subrow['quizdate']; ?></td>
                           <td><?php echo $subrow['quiztitle']; ?></td>
                           <td>
-                            <a href="quiz_start.php?value=<?php echo $subrow['id']; ?>" class="btn btn-outline-primary btn-rounded" >Start Quiz</a>
+                            <a href="quiz_start/<?php echo $subrow['id']; ?>" class="btn btn-outline-primary btn-rounded" >Start Quiz</a>
                           </td>
                         </tr>
                       <?php } } ?>
@@ -122,7 +124,7 @@ $db_host = 'localhost';
     </div>
         <!-- content-wrapper ends -->
 
-        @include('students.include.footer');
+        @include('students.include.footer')
 
    <script type="text/javascript">
      $(document).ready(function () {

@@ -27,7 +27,7 @@ $db_host = 'localhost';
                             </div>
                             <div class="float-right">
                                 <?php
-                                $data = mysqli_query($sql_con, "select *from teachers where status = 1");
+                                $data = mysqli_query($sql_con, "select *from teachers where status = 1 and deleted_at is null");
                                 if (!$data) {
                                     die('Query error: ' . mysqli_error($sql_con));
                                 }
@@ -51,7 +51,7 @@ $db_host = 'localhost';
                             </div>
                             <div class="float-right">
                                 <?php
-                                $data = mysqli_query($sql_con, 'select *from students');
+                                $data = mysqli_query($sql_con, 'select *from students where deleted_at is null');
                                 if (!$data) {
                                     die('Query error: ' . mysqli_error($sql_con));
                                 }
@@ -75,7 +75,7 @@ $db_host = 'localhost';
                             </div>
                             <div class="float-right">
                                 <?php
-                                $data = mysqli_query($sql_con, 'select *from subscribes');
+                                $data = mysqli_query($sql_con, 'select *from subscribes where deleted_at is null');
                                 if (!$data) {
                                     die('Query error: ' . mysqli_error($sql_con));
                                 }
@@ -99,8 +99,8 @@ $db_host = 'localhost';
 
     <!-- POPUP WELCOME MESSAGE START -->
     <!-- Numbers count animation -->
-    <script type="text/javascript" src="../js/jquery.waypoints.min.js"></script>
-    <script type="text/javascript" src="../js/jquery.countup.js"></script>
+    <script type="text/javascript" src="/js/jquery.waypoints.min.js"></script>
+    <script type="text/javascript" src="/js/jquery.countup.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
             $('.number').countUp({

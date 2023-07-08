@@ -1,7 +1,7 @@
 {{-- @include('admin.include.session') --}}
 
 <html>
-<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
 <style type="text/css">
     body {
         text-align: center;

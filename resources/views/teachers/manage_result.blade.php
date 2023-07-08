@@ -71,8 +71,8 @@ $db_host = 'localhost';
                           <td><?php echo $row['rdate']; ?></td>
                           <td>
                             <?php 
-                            $file2 = $row['file'];
-                            $file = "../admin/".$file2;
+                            $file2 = 
+                            $file = $row['file'];
                             $filetype = strtolower(pathinfo($file,PATHINFO_EXTENSION));
                             if ($filetype =="jpg" || $filetype =="png" || $filetype =="jpeg") {
                                 echo "<a href = '$file' target='_blank'><i class='far fa-file-image file-icons' style='font-size:50px; color: #333'></i></a>";
@@ -93,7 +93,7 @@ $db_host = 'localhost';
                              ?>
                             </td>
                           <td>
-                            <a href="update_result.php?value=<?php echo $row['id'] ?>" class="btn btn-outline-primary btn-rounded" ><i class="fa fa-edit"></i></a>
+                            <a href="update_result/<?php echo $row['id'] ?>" class="btn btn-outline-primary btn-rounded" ><i class="fa fa-edit"></i></a>
                             <a href="" data-toggle = "modal" data-target= "#exampleModaldep<?php echo $row['id'];?>"" class="btn btn-outline-danger btn-rounded" ><i class="fa fa-trash"></i></a>
 
                             <!-- MODEL -->
@@ -110,7 +110,7 @@ $db_host = 'localhost';
                                 Do you really want to delete this result?
                               </div>
                               <div class="modal-footer">
-                                <a href="delete_result.php?value=<?php echo $row['id'] ?>" class="btn btn-outline-primary btn-rounded">YES</a>
+                                <a href="delete_result/<?php echo $row['id'] ?>" class="btn btn-outline-primary btn-rounded">YES</a>
                                 <button type="button" class="btn btn-outline-danger btn-rounded" data-dismiss="modal">NO</button>
                               </div>
                             </div>

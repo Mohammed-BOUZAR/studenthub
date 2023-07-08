@@ -167,27 +167,25 @@ class StudentAuthController extends Controller
     {
         //
     }
-
-    public function authenticate(Request $request): RedirectResponse
+    public function updatePassword(Request $request, $id)
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required'],
-        ]);
+        $student = Student::find($id);
+        if ($request->oldpass == $student->password && $request->newpass == $request->cpass) {
+            $student->password = $request->newpass;
+            $student->save();
 
-        if (Auth::attempt($credentials)) {
-            $request->session()->regenerate();
-
-            return redirect()->intended('dashboard');
+            return back()->with('success', 'Password updated successfully.');
         }
-
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ])->onlyInput('email');
+        return back()->with('warning', 'Incorrect password.');
     }
 
-    public function showLoginForm()
+    public function quizDetail(Request $request)
     {
-        view('welcome');
+        return view('students.quiz_details', [
+            'dep' => $request->dep,
+            'session' => $request->session,
+            'semester' => $request->semester,
+            'subject' => $request->subject
+        ]);
     }
 }

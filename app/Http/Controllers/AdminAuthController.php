@@ -450,6 +450,29 @@ class AdminAuthController extends Controller
         return back()->with('success', 'Material added successfully.');
     }
 
+    public function updateMaterial(Request $request, $id)
+    {
+        $folder = '/adm/material/';
+        $file = $request->file('file');
+        $filename = uniqid() . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path($folder), $filename);
+
+        $mydate = $request->input('date');
+
+        $material = Material::find($id);
+        $material->file = $folder . $filename;
+        $material->mdate = $mydate;
+
+        $material->department = $request->input('dep');
+        $material->subject = $request->input('subject');
+        $material->session = $request->input('session');
+        $material->semester = $request->input('semester');
+
+        $material->save();
+
+        return back()->with('success', 'Material added successfully.');
+    }
+
     public function deleteMaterial(Request $request, $id)
     {
         $material = Material::find($id);

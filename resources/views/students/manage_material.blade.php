@@ -43,7 +43,7 @@ $db_host = 'localhost';
                             </thead>
                             <tbody>
                                 <?php  
-                        $data = mysqli_query($sql_con,"SELECT * FROM materials");
+                        $data = mysqli_query($sql_con,"SELECT * FROM materials where deleted_at is null");
                         if (!$data) {
                                             die('Query error: ' . mysqli_error($sql_con));
                                         }
@@ -58,28 +58,27 @@ $db_host = 'localhost';
                                         $sem = $row['semester'];
                                         $sub = $row['subject'];
                                         $date = $row['mdate'];
-                                        $file2 = $row['file'];
-                                        $file = '../admin/' . $file2;
+                                        $file = $row['file'];
                                         
-                                        $qudep = mysqli_query($sql_con, "select *from departments where id = '$dep'");
+                                        $qudep = mysqli_query($sql_con, "select *from departments where id = '$dep' and deleted_at is null");
                                         if (!$qudep) {
                                             die('Query error: ' . mysqli_error($sql_con));
                                         }
                                         $rowdep = mysqli_fetch_array($qudep);
                                         
-                                        $qusec = mysqli_query($sql_con, "select *from sessions where id = '$sec'");
+                                        $qusec = mysqli_query($sql_con, "select *from sessions where id = '$sec' and deleted_at is null");
                                         if (!$qusec) {
                                             die('Query error: ' . mysqli_error($sql_con));
                                         }
                                         $rowsec = mysqli_fetch_array($qusec);
                                         
-                                        $qusem = mysqli_query($sql_con, "select *from semesters where id = '$sem'");
+                                        $qusem = mysqli_query($sql_con, "select *from semesters where id = '$sem' and deleted_at is null");
                                         if (!$qusem) {
                                             die('Query error: ' . mysqli_error($sql_con));
                                         }
                                         $rowsem = mysqli_fetch_array($qusem);
                                         
-                                        $qusub = mysqli_query($sql_con, "select *from subjects where id = '$sub'");
+                                        $qusub = mysqli_query($sql_con, "select *from subjects where id = '$sub' and deleted_at is null");
                                         if (!$qusub) {
                                             die('Query error: ' . mysqli_error($sql_con));
                                         }

@@ -42,7 +42,7 @@ $db_host = 'localhost';
                       </thead>
                       <tbody>
                         <?php  
-                        $data = mysqli_query($sql_con,"SELECT * FROM materials");
+                        $data = mysqli_query($sql_con,"SELECT * FROM materials where deleted_at is null");
                         if (!$data) {
                                     die('Query error: ' . mysqli_error($sql_con));
                                 }
@@ -57,20 +57,19 @@ $db_host = 'localhost';
                           $sem = $row['semester'];
                           $sub = $row['subject'];
                           $date = $row['mdate'];
-                          $file2 = $row['file'];
-                          $file = "../admin/".$file2;
+                          $file = $row['file'];
 
-                          $qudep = mysqli_query($sql_con,"select *from departments where id = '$dep'");
+                          $qudep = mysqli_query($sql_con,"select *from departments where id = '$dep' and deleted_at is null");
                           $rowdep = mysqli_fetch_array($qudep);
 
-                          $qusec = mysqli_query($sql_con,"select *from session where id = '$sec'");
+                          $qusec = mysqli_query($sql_con,"select *from sessions where id = '$sec' and deleted_at is null");
                           $rowsec = mysqli_fetch_array($qusec);
 
-                          $qusem = mysqli_query($sql_con,"select *from semester where id = '$sem'");
+                          $qusem = mysqli_query($sql_con,"select *from semesters where id = '$sem'and deleted_at is null");
                           $rowsem = mysqli_fetch_array($qusem);
 
 
-                          $qusub = mysqli_query($sql_con,"select *from subjects where id = '$sub'");
+                          $qusub = mysqli_query($sql_con,"select *from subjects where id = '$sub'and deleted_at is null");
                           $rowsub = mysqli_fetch_array($qusub);
                           
                           echo $rowdep['depname'];
@@ -106,7 +105,7 @@ $db_host = 'localhost';
                           
                           </td>
                           <td>
-                            <a href="update_material.php?value=<?php echo $row['id'] ?>" class="btn btn-outline-primary btn-rounded"><i class="fa fa-edit"></i></a>
+                            <a href="update_material/<?php echo $row['id'] ?>" class="btn btn-outline-primary btn-rounded"><i class="fa fa-edit"></i></a>
                             <a href="" class="btn btn-outline-danger btn-rounded" data-toggle = "modal" data-target= "#exampleModaldep<?php echo $row['id'];?>"><i class="fa fa-trash"></i></a>
 
                             <!-- MODEL -->
@@ -123,7 +122,7 @@ $db_host = 'localhost';
                                 Do you really want to delete this file?
                               </div>
                               <div class="modal-footer">
-                                <a href="delete_material.php?value=<?php echo $row['id'] ?>" class="btn btn-outline-primary btn-rounded">YES</a>
+                                <a href="delete_material/<?php echo $row['id'] ?>" class="btn btn-outline-primary btn-rounded">YES</a>
                                 <button type="button" class="btn btn-outline-danger btn-rounded" data-dismiss="modal">NO</button>
                               </div>
                             </div>

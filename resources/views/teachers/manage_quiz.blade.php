@@ -48,14 +48,14 @@ $db_host = 'localhost';
                             <tbody>
                                 <?php
                         $tecid = session('tid');
-                        $tecdata = mysqli_query($sql_con,"select dep from teachers where id = '$tecid'");
+                        $tecdata = mysqli_query($sql_con,"select dep from teachers where id = '$tecid' and status = 1 and deleted_at is null");
                         if (!$tecdata) {
                                     die('Query error: ' . mysqli_error($sql_con));
                                 }
                         $tecrow = mysqli_fetch_array($tecdata);
                         $depid = $tecrow['dep'];
 
-                        $query = mysqli_query($sql_con,"SELECT *, id AS id FROM quizzes where department = '$depid' GROUP BY id");
+                        $query = mysqli_query($sql_con,"SELECT * FROM quizzes where department = '$depid' and deleted_at is null");
                         if (!$query) {
                                     die('Query error: ' . mysqli_error($sql_con));
                                 }
@@ -66,28 +66,28 @@ $db_host = 'localhost';
                            $depid = $subrow['department'];
                            $subid = $subrow['subject'];
 
-                           $datasub = mysqli_query($sql_con,"select *from subjects where id = '$subid'");
+                           $datasub = mysqli_query($sql_con,"select *from subjects where id = '$subid' and deleted_at is null");
                            if (!$datasub) {
                                     die('Query error: ' . mysqli_error($sql_con));
                                 }
                            $subfetch = mysqli_fetch_array($datasub);
                            $subname = $subfetch['sname'];
 
-                           $data = mysqli_query($sql_con,"select *from semesters where id = '$semid'");
+                           $data = mysqli_query($sql_con,"select *from semesters where id = '$semid' and deleted_at is null");
                            if (!$data) {
                                     die('Query error: ' . mysqli_error($sql_con));
                                 }
                            $semfetch = mysqli_fetch_array($data);
                            $semname = $semfetch['semester'];
 
-                           $data2 = mysqli_query($sql_con,"select *from sessions where id = '$sessid'");
+                           $data2 = mysqli_query($sql_con,"select *from sessions where id = '$sessid' and deleted_at is null");
                            if (!$data2) {
                                     die('Query error: ' . mysqli_error($sql_con));
                                 }
                            $row2 = mysqli_fetch_array($data2);
                            $sessname = $row2['session'];
 
-                           $data3 = mysqli_query($sql_con,"select *from departments where id = '$depid'");
+                           $data3 = mysqli_query($sql_con,"select *from departments where id = '$depid' and deleted_at is null");
                            if (!$data3) {
                                     die('Query error: ' . mysqli_error($sql_con));
                                 }
@@ -103,7 +103,7 @@ $db_host = 'localhost';
                                     <td><?php echo $subrow['quizdate']; ?></td>
                                     <td><?php echo $subrow['quiztitle']; ?></td>
                                     <td>
-                                        <a href="quiz_detail.php?value=<?php echo $subrow['id']; ?>"
+                                        <a href="quiz_detail/<?php echo $subrow['id']; ?>"
                                             class="btn btn-outline-primary btn-rounded">Details</a>
                                         <a href="" data-toggle="modal"
                                             data-target="#exampleModaldep<?php echo $subrow['id']; ?>"
@@ -125,7 +125,7 @@ $db_host = 'localhost';
                                                         Do you really want to delete quiz?
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <a href="delete_quiz.php?value=<?php echo $subrow['id']; ?>"
+                                                        <a href="delete_quiz/<?php echo $subrow['id']; ?>"
                                                             class="btn btn-outline-primary btn-rounded">YES</a>
                                                         <button type="button"
                                                             class="btn btn-outline-danger btn-rounded"

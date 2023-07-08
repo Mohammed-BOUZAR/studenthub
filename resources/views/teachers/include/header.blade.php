@@ -15,24 +15,24 @@ $db_host = 'localhost';
     <title>Student Hub</title>
     <!-- plugins:css -->
 
-    <link rel="stylesheet" href="vendors/iconfonts/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
-    <link rel="stylesheet" href="vendors/css/vendor.bundle.addons.css">
-    <link rel="stylesheet" type="text/css" href="css/all.min.css">
+    <link rel="stylesheet" href="/teacher/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/teacher/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="/teacher/vendors/css/vendor.bundle.addons.css">
+    <link rel="stylesheet" type="text/css" href="/teacher/css/all.min.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" type="text/css" href="css/fileinput.css">
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/fileinput.js" type="text/javascript"></script>
-    <script src="js/theme.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="/teacher/css/fileinput.css">
+    <script src="/teacher/js/jquery-3.3.1.min.js"></script>
+    <script src="/teacher/js/fileinput.js" type="text/javascript"></script>
+    <script src="/teacher/js/theme.js" type="text/javascript"></script>
 
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/custom.css">
+    <link rel="stylesheet" href="/teacher/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/teacher/css/custom.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="images/HeadLogo.png" />
+    <link rel="shortcut icon" href="/teacher/images/HeadLogo.png" />
     <style type="text/css">
         .fileinput-cancel-button {
             display: none;
@@ -56,10 +56,10 @@ $db_host = 'localhost';
         <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
                 <a class="navbar-brand brand-logo" href="dashboard">
-                    <img src="images/Logo.png" alt="logo" style="height: auto">
+                    <img src="/teacher/images/Logo.png" alt="logo" style="height: auto">
                 </a>
                 <a class="navbar-brand brand-logo-mini" href="dashboard">
-                    <img src="images/HeadLogo.png" alt="logo"style="width: 60px;height: auto">
+                    <img src="/teacher/images/HeadLogo.png" alt="logo"style="width: 60px;height: auto">
                 </a>
             </div>
             <a class="logout-para" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-power-off"></i>
@@ -133,25 +133,25 @@ $db_host = 'localhost';
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="dashboard">
+                        <a class="nav-link" href="/teacher/dashboard">
                             <i class="menu-icon mdi mdi-television"></i>
                             <span class="menu-title">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="user_pro">
+                        <a class="nav-link" href="/teacher/user_pro">
                             <i class="menu-icon mdi mdi-account-circle" style="font-size: 20px"></i>
                             <span class="menu-title">Profile</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="update_teacher_profile">
+                        <a class="nav-link" href="/teacher/update_teacher_profile">
                             <i class="menu-icon fas fa-user-edit"></i>
                             <span class="menu-title">Update Profile</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="change_password">
+                        <a class="nav-link" href="/teacher/change_password">
                             <i class="menu-icon mdi mdi-key" style="font-size: 20px;"></i>
                             <span class="menu-title">Change Password</span>
                         </a>
@@ -166,10 +166,10 @@ $db_host = 'localhost';
                         <div class="collapse" id="ui-basic1">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="add_noticeboard">Update Notice Board</a>
+                                    <a class="nav-link" href="/teacher/add_noticeboard">Update Notice Board</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="manage_noticeboard">Manage Notice Board</a>
+                                    <a class="nav-link" href="/teacher/manage_noticeboard">Manage Notice Board</a>
                                 </li>
                             </ul>
                         </div>
@@ -184,10 +184,10 @@ $db_host = 'localhost';
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="add_result">Add Result</a>
+                                    <a class="nav-link" href="/teacher/add_result">Add Result</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="manage_result">Manage Result</a>
+                                    <a class="nav-link" href="/teacher/manage_result">Manage Result</a>
                                 </li>
                             </ul>
                         </div>
@@ -202,10 +202,10 @@ $db_host = 'localhost';
                         <div class="collapse" id="ui-basicmaterial">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="add_material">Add Material</a>
+                                    <a class="nav-link" href="/teacher/add_material">Add Material</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="manage_material">Manage Material</a>
+                                    <a class="nav-link" href="/teacher/manage_material">Manage Material</a>
                                 </li>
                             </ul>
                         </div>
@@ -220,13 +220,13 @@ $db_host = 'localhost';
                         <div class="collapse" id="ui-basicmaterialquiz">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="add_quiz">Add Quiz</a>
+                                    <a class="nav-link" href="/teacher/add_quiz">Add Quiz</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="manage_quiz">Manage Quiz</a>
+                                    <a class="nav-link" href="/teacher/manage_quiz">Manage Quiz</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="manage_quiz_result">Manage Quiz Results</a>
+                                    <a class="nav-link" href="/teacher/manage_quiz_result">Manage Quiz Results</a>
                                 </li>
                             </ul>
                         </div>

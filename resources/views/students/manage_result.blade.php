@@ -41,14 +41,14 @@ $db_host = 'localhost';
                             </thead>
                             <tbody>
                                 <?php 
-                          $data = mysqli_query($sql_con,"select *from results");
+                          $data = mysqli_query($sql_con,"select *from results  where deleted_at is null");
                           if (!$data) {
                               die('Query error: ' . mysqli_error($sql_con));
                           }
                           while ($row = mysqli_fetch_array($data)) {
 
                             $depid = $row['department'];
-                            $depdata = mysqli_query($sql_con,"select *from departments where id = '$depid'");
+                            $depdata = mysqli_query($sql_con,"select *from departments where id = '$depid' and deleted_at is null");
                             if (!$depdata) {
                               die('Query error: ' . mysqli_error($sql_con));
                           }
@@ -56,7 +56,7 @@ $db_host = 'localhost';
                             $depname = $deprow['depname'];
 
                             $secid = $row['session'];
-                            $secdata = mysqli_query($sql_con,"select *from sessions where id = '$secid'");
+                            $secdata = mysqli_query($sql_con,"select *from sessions where id = '$secid' and deleted_at is null");
                             if (!$secdata) {
                               die('Query error: ' . mysqli_error($sql_con));
                           }
@@ -67,7 +67,7 @@ $db_host = 'localhost';
                             $secname = $secrow['session'];
 
                             $semid = $row['semester'];
-                            $semdata = mysqli_query($sql_con,"select *from semesters where id = '$semid'");
+                            $semdata = mysqli_query($sql_con,"select *from semesters where id = '$semid' and deleted_at is null");
                             if (!$semdata) {
                               die('Query error: ' . mysqli_error($sql_con));
                           }
@@ -83,8 +83,7 @@ $db_host = 'localhost';
                                     <td><?php echo $row['rdate']; ?></td>
                                     <td>
                                         <?php
-                                        $file2 = $row['file'];
-                                        $file = '../admin/' . $file2;
+                                        $file = $row['file'];
                                         $filetype = strtolower(pathinfo($file, PATHINFO_EXTENSION));
                                         if ($filetype == 'jpg' || $filetype == 'png' || $filetype == 'jpeg') {
                                             echo "<a href = '$file' target='_blank'><i class='far fa-file-image file-icons' style='font-size:50px; color: #333'></i></a>";

@@ -203,11 +203,21 @@ Route::post('/student_signup', [StudentAuthController::class, 'store']);
 Route::post('/teacherlogin', [TeacherAuthController::class, 'login']);
 Route::get('/teacher/logout', [TeacherAuthController::class, 'logout']);
 Route::post('/teacher/update_profile', [TeacherAuthController::class, 'update']);
-Route::post('/teacher/add_department', [TeacherAuthController::class, 'addDepartment']);
-Route::post('/teacher/add_session', [TeacherAuthController::class, 'addSession']);
-Route::post('/teacher/add_semester', [TeacherAuthController::class, 'addSemester']);
-Route::post('/teacher/add_subject', [TeacherAuthController::class, 'addSubject']);
+Route::post('/teacher/add_noticeboard', [TeacherAuthController::class, 'addNoticeBoard']);
+Route::post('/teacher/add_result', [TeacherAuthController::class, 'addResult']);
+Route::post('/teacher/add_material', [TeacherAuthController::class, 'addMaterial']);
+Route::post('/teacher/add_quiz', [TeacherAuthController::class, 'addQuiz']);
 Route::get('/teacher/dashboard', [TeacherAuthController::class, 'index']);
+
+Route::post('/teacher/update_noticeboard/{id}', [TeacherAuthController::class, 'updateNoticeBoard']);
+Route::get('/teacher/delete_noticeboard/{id}', [TeacherAuthController::class, 'deleteNoticeBoard']);
+Route::post('/teacher/update_result/{id}', [TeacherAuthController::class, 'updateResult']);
+Route::get('/teacher/delete_result/{id}', [TeacherAuthController::class, 'deleteResult']);
+Route::post('/teacher/update_material/{id}', [TeacherAuthController::class, 'updateMaterial']);
+Route::get('/teacher/delete_material/{id}', [TeacherAuthController::class, 'deleteMaterial']);
+Route::post('/teacher/update_quiz/{id}', [TeacherAuthController::class, 'updateQuiz']);
+Route::get('/teacher/delete_quiz/{id}', [TeacherAuthController::class, 'deleteQuiz']);
+Route::post('/teacher/change_password/{id}', [TeacherAuthController::class, 'updatePassword']);
 
 
 Route::post('/studentlogin', [StudentAuthController::class, 'login']);
@@ -218,6 +228,7 @@ Route::post('/student/add_session', [StudentAuthController::class, 'addSession']
 Route::post('/student/add_semester', [StudentAuthController::class, 'addSemester']);
 Route::post('/student/add_subject', [StudentAuthController::class, 'addSubject']);
 Route::get('/student/dashboard', [StudentAuthController::class, 'index']);
+Route::post('/student/change_password/{id}', [StudentAuthController::class, 'updatePassword']);
 
 Route::get('/', function () {
     return view('index');
@@ -278,17 +289,33 @@ Route::get('/teacher/add_quiz', function () {
     return view('teachers.add_quiz');
 });
 
+Route::get('/teacher/quiz_detail/{id}', function ($id) {
+    return view('teachers.quiz_detail', ['id' => $id]);
+});
+
 
 Route::get('/teacher/manage_noticeboard', function () {
     return view('teachers.manage_noticeboard');
+});
+
+Route::get('/teacher/update_noticeboard/{id}', function ($id) {
+    return view('teachers.update_noticeboard', ['id' => $id]);
 });
 
 Route::get('/teacher/manage_result', function () {
     return view('teachers.manage_result');
 });
 
+Route::get('/teacher/update_result/{id}', function ($id) {
+    return view('teachers.update_result', ['id' => $id]);
+});
+
 Route::get('/teacher/manage_material', function () {
     return view('teachers.manage_material');
+});
+
+Route::get('/teacher/update_material/{id}', function ($id) {
+    return view('teachers.update_material', ['id' => $id]);
 });
 
 Route::get('/teacher/manage_quiz', function () {
@@ -375,3 +402,5 @@ Route::get('/student/check_quiz', function () {
 Route::get('/student/manage_quiz_result', function () {
     return view('students.manage_quiz_result');
 });
+
+Route::post('/student/quiz_details', [StudentAuthController::class, 'quizDetail']);
