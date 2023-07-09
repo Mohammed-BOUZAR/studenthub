@@ -26,8 +26,172 @@ class AdminAuthController extends Controller
      */
     public function index()
     {
-        //
-        return view('home');
+        return view('admin.index');
+    }
+
+    public function dashboard()
+    {
+        return view('admin.dashboard');
+    }
+
+    public function update_profile()
+    {
+        return view('admin.update_profile');
+    }
+
+    public function teacher_pending()
+    {
+        return view('admin.teacher_pending');
+    }
+
+    public function teacher_profile()
+    {
+        return view('admin.teacher_profile');
+    }
+
+    public function update_teacher_profile($id)
+    {
+        return view('admin.update_teacher_profile', ['tecid' => $id]);
+    }
+
+    public function update_student_profile($id)
+    {
+        return view('admin.update_student_profile', ['stdid' => $id]);
+    }
+
+    public function student_profile()
+    {
+        return view('admin.student_profile');
+    }
+
+    public function add_department()
+    {
+        return view('admin.add_department');
+    }
+
+    public function manage_department()
+    {
+        return view('admin.manage_department');
+    }
+
+    public function update_department($id)
+    {
+        return view('admin.update_department', ['id' => $id]);
+    }
+
+    public function add_session()
+    {
+        return view('admin.add_session');
+    }
+
+    public function manage_session()
+    {
+        return view('admin.manage_session');
+    }
+
+    public function update_session($id)
+    {
+        return view('admin.update_session', ['id' => $id]);
+    }
+
+    public function add_semester()
+    {
+        return view('admin.add_semester');
+    }
+
+    public function manage_semester()
+    {
+        return view('admin.manage_semester');
+    }
+
+    public function update_semester($id)
+    {
+        return view('admin.update_semester', ['id' => $id]);
+    }
+
+    public function add_subject()
+    {
+        return view('admin.add_subject');
+    }
+
+    public function manage_subject()
+    {
+        return view('admin.manage_subject');
+    }
+
+    public function update_subject($id)
+    {
+        return view('admin.update_subject', ['id' => $id]);
+    }
+
+    public function add_noticeboard()
+    {
+        return view('admin.add_noticeboard');
+    }
+
+    public function add_result()
+    {
+        return view('admin.add_result');
+    }
+
+    public function add_material()
+    {
+        return view('admin.add_material');
+    }
+
+    public function add_quiz()
+    {
+        return view('admin.add_quiz');
+    }
+
+    public function quiz_detail($id)
+    {
+        return view('admin.quiz_detail', ['id' => $id]);
+    }
+
+    public function update_noticeboard($id)
+    {
+        return view('admin.update_noticeboard', ['id' => $id]);
+    }
+
+    public function update_result($id)
+    {
+        return view('admin.update_result', ['id' => $id]);
+    }
+
+    public function update_material($id)
+    {
+        return view('admin.update_material', ['id' => $id]);
+    }
+
+    public function manage_noticeboard()
+    {
+        return view('admin.manage_noticeboard');
+    }
+
+    public function manage_result()
+    {
+        return view('admin.manage_result');
+    }
+
+    public function manage_material()
+    {
+        return view('admin.manage_material');
+    }
+
+    public function manage_quiz()
+    {
+        return view('admin.manage_quiz');
+    }
+
+    public function manage_quiz_result()
+    {
+        return view('admin.manage_quiz_result');
+    }
+
+    public function subscribes()
+    {
+        return view('admin.subscribes');
     }
 
     public function login(Request $request)

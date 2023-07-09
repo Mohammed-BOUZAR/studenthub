@@ -11,19 +11,6 @@ use Illuminate\Support\Facades\Storage;
 
 class StudentAuthController extends Controller
 {
-    // protected function redirectTo()
-    // {
-    //     if (auth()->guard('admin')->check()) {
-    //         return '/admin/dashboard';
-    //     } elseif (auth()->guard('teacher')->check()) {
-    //         return '/teacher/dashboard';
-    //     } elseif (auth()->guard('student')->check()) {
-    //         return '/student/dashboard';
-    //     } else {
-    //         return '/';
-    //     }
-    // }
-
     /**
      * Display a listing of the resource.
      *
@@ -31,9 +18,64 @@ class StudentAuthController extends Controller
      */
     public function index()
     {
-        //
+        return view('students');
+    }
+
+    public function dashboard()
+    {
         return view('students.dashboard');
     }
+
+    public function studentLogin()
+    {
+        return view('studentlogin');
+    }
+
+    public function studentSignup()
+    {
+        return view('student_signup');
+    }
+
+    public function update_student_profile()
+    {
+        return view('students.update_student_profile');
+    }
+
+    public function change_password()
+    {
+        return view('students.change_password');
+    }
+
+    public function manage_noticeboard()
+    {
+        return view('students.manage_noticeboard');
+    }
+
+    public function manage_result()
+    {
+        return view('students.manage_result');
+    }
+
+    public function manage_material()
+    {
+        return view('students.manage_material');
+    }
+
+    public function manage_quiz()
+    {
+        return view('students.manage_quiz');
+    }
+
+    public function check_quiz()
+    {
+        return view('students.check_quiz');
+    }
+
+    public function manage_quiz_result()
+    {
+        return view('students.manage_quiz_result');
+    }
+
 
     public function login(Request $request)
     {
@@ -51,7 +93,7 @@ class StudentAuthController extends Controller
                 $row = $data[0];
                 $value3 = $row->id;
                 session(['sid' => $value3]);
-                return redirect('/student/dashboard');
+                return redirect('/students/dashboard');
             } else {
                 echo "<script>alert('Invalid information please try again')</script>";
                 return redirect()->back()->with('error', 'Invalid information please try again!');
@@ -65,7 +107,7 @@ class StudentAuthController extends Controller
         session()->flush();
 
         // Redirect to the login page or any other desired page
-        return redirect('/studentlogin');
+        return redirect('/students/login');
     }
 
     /**
@@ -115,7 +157,7 @@ class StudentAuthController extends Controller
 
         DB::table('students')->insert($data);
 
-        return redirect('studentlogin')->with('success', 'You are successfully registered');
+        return redirect('students/login')->with('success', 'You are successfully registered');
     }
 
     /**

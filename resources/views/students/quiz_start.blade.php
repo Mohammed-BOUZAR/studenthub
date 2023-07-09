@@ -38,7 +38,7 @@ if (isset($_GET['value'])) {
     $id = $_GET['value'];
 
     $userid = session('sid');
-    $data = mysqli_query($sql_con,"select *from quizresult where quizid ='$id' AND userid = '$userid'");
+    $data = mysqli_query($sql_con,"select *from quizresults where quizid ='$id' AND userid = '$userid'");
     $row = mysqli_num_rows($data);
     if ($row > 0 ) {
       echo "<script>alert('Your quiz already has been done')</script>";

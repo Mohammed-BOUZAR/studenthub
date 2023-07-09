@@ -100,16 +100,16 @@
      <div class="swiper-container">
          <div class="swiper-wrapper">
              <?php 
-        $data = mysqli_query($sql_con,"select *from teachers where status = '1' ORDER BY id DESC LIMIT 10");
+        $data = mysqli_query($sql_con,"select *from teachers where status = '1' and deleted_at is null ORDER BY id DESC LIMIT 10");
         while ($row = mysqli_fetch_array($data)) {
            $depname =  $row['dep'];
-           $data2 = mysqli_query($sql_con,"select *from departments where id = '$depname'");
+           $data2 = mysqli_query($sql_con,"select *from departments where id = '$depname' and deleted_at is null");
             $deprow = mysqli_fetch_array($data2);
          ?>
              <div class="swiper-slide">
                  <div class="Box">
 
-                     <img src="/teacher/<?php echo $row['img']; ?>" alt="">
+                     <img src="/storage/<?php echo $row['img']; ?>" alt="">
                  </div>
                  <div class="detail">
                      <h3><?php echo $row['firstname'] . ' ' . $row['lastname']; ?><br><span><?php echo $deprow['depname']; ?></span> <br>

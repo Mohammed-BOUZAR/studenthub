@@ -112,7 +112,7 @@ $db_host = 'localhost';
                           <td><?php echo $subrow['quizdate']; ?></td>
                           <td><?php echo $subrow['quiztitle']; ?></td>
                           <td>
-                            <a href="quiz_start/<?php echo $subrow['id']; ?>" class="btn btn-outline-primary btn-rounded" >Start Quiz</a>
+                            <a href="/quiz_start/<?php echo $subrow['id']; ?>" class="btn btn-outline-primary btn-rounded" >Start Quiz</a>
                           </td>
                         </tr>
                       <?php } } ?>

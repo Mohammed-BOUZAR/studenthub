@@ -35,8 +35,140 @@ class TeacherAuthController extends Controller
      */
     public function index()
     {
-        //
+        return view('teachers');
+    }
+
+    public function dashboard()
+    {
         return view('teachers.dashboard');
+    }
+
+    public function teacherLogin() {
+        return view('teacherlogin');
+    }
+
+    public function teacherSignup() {
+        return view('teacher_signup');
+    }
+
+    public function change_password()
+    {
+        return view('teachers.change_password');
+    }
+
+    public function add_noticeboard()
+    {
+        return view('teachers.add_noticeboard');
+    }
+
+    public function add_result()
+    {
+        return view('teachers.add_result');
+    }
+
+    public function add_material()
+    {
+        return view('teachers.add_material');
+    }
+
+    public function add_quiz()
+    {
+        return view('teachers.add_quiz');
+    }
+
+    public function quiz_detail($id)
+    {
+        return view('teachers.quiz_detail', ['id' => $id]);
+    }
+
+    public function manage_noticeboard()
+    {
+        return view('teachers.manage_noticeboard');
+    }
+
+    public function update_noticeboard($id)
+    {
+        return view('teachers.update_noticeboard', ['id' => $id]);
+    }
+
+    public function manage_result()
+    {
+        return view('teachers.manage_result');
+    }
+
+    public function update_result($id)
+    {
+        return view('teachers.update_result', ['id' => $id]);
+    }
+
+    public function manage_material()
+    {
+        return view('teachers.manage_material');
+    }
+
+    public function update_material($id)
+    {
+        return view('teachers.update_material', ['id' => $id]);
+    }
+
+    public function manage_quiz()
+    {
+        return view('teachers.manage_quiz');
+    }
+
+    public function manage_quiz_result()
+    {
+        return view('teachers.manage_quiz_result');
+    }
+
+    public function update_teacher_profile()
+    {
+        return view('teachers.update_teacher_profile');
+    }
+
+    public function teacher_pending()
+    {
+        return view('teachers.teacher_pending');
+    }
+
+    public function teacher_profile()
+    {
+        return view('teachers.teacher_profile');
+    }
+
+    public function student_profile()
+    {
+        return view('teachers.student_profile');
+    }
+
+    public function add_department()
+    {
+        return view('teachers.add_department');
+    }
+
+    public function manage_department()
+    {
+        return view('teachers.manage_department');
+    }
+
+    public function add_session()
+    {
+        return view('teachers.add_session');
+    }
+
+    public function manage_session()
+    {
+        return view('teachers.manage_session');
+    }
+
+    public function add_semester()
+    {
+        return view('teachers.add_semester');
+    }
+
+    public function manage_semester()
+    {
+        return view('teachers.manage_semester');
     }
 
     public function login(Request $request)
@@ -62,7 +194,7 @@ class TeacherAuthController extends Controller
                     //     exit();
                     // }
                     session(['tid' => $value3]);
-                    return redirect('/teacher/dashboard');
+                    return redirect('/teachers/dashboard');
                 } else {
                     echo "<script>alert('Invalid information please try again')</script>";
                     return redirect()->back()->with('error', 'Invalid information please try again!');
@@ -79,7 +211,7 @@ class TeacherAuthController extends Controller
         session()->flush();
 
         // Redirect to the login page or any other desired page
-        return redirect('/teacherlogin');
+        return redirect('/teachers/login');
     }
 
     /**
@@ -127,7 +259,7 @@ class TeacherAuthController extends Controller
 
         DB::table('teachers')->insert($data);
 
-        return redirect('/teacherlogin')->with('success', 'Successfully Registered. Please wait for account approval');
+        return redirect('/teachers/login')->with('success', 'Successfully Registered. Please wait for account approval');
     }
 
     /**

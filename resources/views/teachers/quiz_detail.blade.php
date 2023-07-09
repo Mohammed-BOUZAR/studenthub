@@ -77,7 +77,7 @@ $db_host = 'localhost';
         Do you really want to delete quiz?
       </div>
       <div class="modal-footer">
-        <a href="delete_quiz/<?php echo $id ?>" class="btn btn-outline-primary">YES</a>
+        <a href="/delete_quiz/<?php echo $id ?>" class="btn btn-outline-primary">YES</a>
         <button type="button" class="btn btn-outline-danger" data-dismiss="modal">NO</button>
       </div>
     </div>

@@ -21,7 +21,7 @@ $db_host = 'localhost';
                                 {{ session('error') }}
                             </div>
                         @endif
-                            <form action="/teacher_signup" method="post" enctype="multipart/form-data"
+                            <form action="/teaches/signup" method="post" enctype="multipart/form-data"
                                 onsubmit="return validate();">
                                 @csrf
                                 <div class="form-row">

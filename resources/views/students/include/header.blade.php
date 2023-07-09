@@ -15,24 +15,24 @@ $db_host = 'localhost';
     <title>Student Hub</title>
     <!-- plugins:css -->
 
-    <link rel="stylesheet" href="vendors/iconfonts/mdi/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
-    <link rel="stylesheet" href="vendors/css/vendor.bundle.addons.css">
-    <link rel="stylesheet" type="text/css" href="css/all.min.css">
+    <link rel="stylesheet" href="/student/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="/student/vendors/css/vendor.bundle.base.css">
+    <link rel="stylesheet" href="/student/vendors/css/vendor.bundle.addons.css">
+    <link rel="stylesheet" type="text/css" href="/student/css/all.min.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" type="text/css" href="css/fileinput.css">
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/fileinput.js" type="text/javascript"></script>
-    <script src="js/theme.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="/student/css/fileinput.css">
+    <script src="/student/js/jquery-3.3.1.min.js"></script>
+    <script src="/student/js/fileinput.js" type="text/javascript"></script>
+    <script src="/student/js/theme.js" type="text/javascript"></script>
 
 
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/custom.css">
+    <link rel="stylesheet" href="/student/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/student/css/custom.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="images/HeadLogo.png" />
+    <link rel="shortcut icon" href="/student/images/HeadLogo.png" />
     <style type="text/css">
         .fileinput-cancel-button {
             display: none;
@@ -56,10 +56,10 @@ $db_host = 'localhost';
         <nav class="navbar default-layout col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
                 <a class="navbar-brand brand-logo" href="dashboard">
-                    <img src="images/Logo.png" alt="logo" style="height: auto">
+                    <img src="/student/images/Logo.png" alt="logo" style="height: auto">
                 </a>
                 <a class="navbar-brand brand-logo-mini" href="dashboard">
-                    <img src="images/HeadLogo.png" alt="logo"style="width: 60px;height: auto">
+                    <img src="/student/images/HeadLogo.png" alt="logo"style="width: 60px;height: auto">
                 </a>
             </div>
             <a class="logout-para" data-toggle="modal" data-target="#exampleModal"><i class="fa fa-power-off"></i>

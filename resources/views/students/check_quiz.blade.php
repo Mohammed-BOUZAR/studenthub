@@ -67,7 +67,7 @@ $db_host = 'localhost';
           <div class="row text-center">
             <div class="col-md-12">
               <div class="panel panel2">
-                <form class="update-pro-form" method="post" action="/student/quiz_details">
+                <form class="update-pro-form" method="post" action="/students/quiz_details">
                   @csrf
                   <label>Select Department</label>
                       <select id="inputState3" name="dep" class="col-sm-12 form-control" required="true">

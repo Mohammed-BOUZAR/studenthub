@@ -133,25 +133,25 @@ $db_host = 'localhost';
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/teacher/dashboard">
+                        <a class="nav-link" href="/teachers/dashboard">
                             <i class="menu-icon mdi mdi-television"></i>
                             <span class="menu-title">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/teacher/user_pro">
+                        <a class="nav-link" href="/teachers/user_pro">
                             <i class="menu-icon mdi mdi-account-circle" style="font-size: 20px"></i>
                             <span class="menu-title">Profile</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/teacher/update_teacher_profile">
+                        <a class="nav-link" href="/teachers/update_teacher_profile">
                             <i class="menu-icon fas fa-user-edit"></i>
                             <span class="menu-title">Update Profile</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/teacher/change_password">
+                        <a class="nav-link" href="/teachers/change_password">
                             <i class="menu-icon mdi mdi-key" style="font-size: 20px;"></i>
                             <span class="menu-title">Change Password</span>
                         </a>
@@ -166,10 +166,10 @@ $db_host = 'localhost';
                         <div class="collapse" id="ui-basic1">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/teacher/add_noticeboard">Update Notice Board</a>
+                                    <a class="nav-link" href="/teachers/add_noticeboard">Update Notice Board</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/teacher/manage_noticeboard">Manage Notice Board</a>
+                                    <a class="nav-link" href="/teachers/manage_noticeboard">Manage Notice Board</a>
                                 </li>
                             </ul>
                         </div>
@@ -184,10 +184,10 @@ $db_host = 'localhost';
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/teacher/add_result">Add Result</a>
+                                    <a class="nav-link" href="/teachers/add_result">Add Result</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/teacher/manage_result">Manage Result</a>
+                                    <a class="nav-link" href="/teachers/manage_result">Manage Result</a>
                                 </li>
                             </ul>
                         </div>
@@ -202,10 +202,10 @@ $db_host = 'localhost';
                         <div class="collapse" id="ui-basicmaterial">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/teacher/add_material">Add Material</a>
+                                    <a class="nav-link" href="/teachers/add_material">Add Material</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/teacher/manage_material">Manage Material</a>
+                                    <a class="nav-link" href="/teachers/manage_material">Manage Material</a>
                                 </li>
                             </ul>
                         </div>
@@ -220,13 +220,13 @@ $db_host = 'localhost';
                         <div class="collapse" id="ui-basicmaterialquiz">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/teacher/add_quiz">Add Quiz</a>
+                                    <a class="nav-link" href="/teachers/add_quiz">Add Quiz</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/teacher/manage_quiz">Manage Quiz</a>
+                                    <a class="nav-link" href="/teachers/manage_quiz">Manage Quiz</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="/teacher/manage_quiz_result">Manage Quiz Results</a>
+                                    <a class="nav-link" href="/teachers/manage_quiz_result">Manage Quiz Results</a>
                                 </li>
                             </ul>
                         </div>

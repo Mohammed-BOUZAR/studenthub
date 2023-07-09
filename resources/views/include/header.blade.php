@@ -11,16 +11,16 @@
     
     <!-- LINKS START -->
 
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/hover-min.css">
-    <link rel="stylesheet" href="css/swiper.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/hover-min.css">
+    <link rel="stylesheet" href="/css/swiper.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/all.min.css">
     <link rel="icon" href="images/HeadLogo.png">
 
     <!-- add active class start-->
-    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/script.js"></script>
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/js/script.js"></script>
     <!-- add active class end -->
     
 </head>
@@ -47,7 +47,7 @@
             Professors
             </a>
             <div class="dropdown-menu menubg">
-            <a class=" nav-link te" href="/teacherlogin">Dashboard</a>
+            <a class=" nav-link te" href="/teachers/login">Dashboard</a>
             </div>
         </li>
         <li class="nav-item dropdown">
@@ -55,7 +55,7 @@
             Students
             </a>
             <div class="dropdown-menu menubg">
-            <a class=" nav-link te" href="/studentlogin">Dashboard</a>
+            <a class=" nav-link te" href="/students/login">Dashboard</a>
             </div>
         </li>
         <li class="nav-item dropdown">
@@ -63,8 +63,8 @@
             Sign Up
             </a>
             <div class="dropdown-menu menubg">
-            <a class=" nav-link te" href="/teacher_signup">Teacher</a><br>
-            <a class=" nav-link te" href="/student_signup">Student</a>
+            <a class=" nav-link te" href="/teachers/signup">Teacher</a><br>
+            <a class=" nav-link te" href="/students/signup">Student</a>
             </div>
         </li>
         </ul>

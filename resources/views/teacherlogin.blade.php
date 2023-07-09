@@ -26,7 +26,7 @@ $db_host = 'localhost';
                                 {{ session('error') }}
                             </div>
                         @endif
-                            <form method="post" action="/teacherlogin">
+                            <form method="post" action="/teachers/login">
                                 @csrf
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Email address</label>
