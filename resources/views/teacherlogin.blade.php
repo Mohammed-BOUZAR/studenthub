@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 
 @include('include.header');
 <?php
@@ -21,11 +18,6 @@ $db_host = 'localhost';
                     <div class="outerdiv">
                         <h1 class="Login-text">Teacher Login Form</h1>
                         <div class="InnerDiv">
-                            @if (session('error'))
-                            <div class="alert alert-danger">
-                                {{ session('error') }}
-                            </div>
-                        @endif
                             <form method="post" action="/teachers/login">
                                 @csrf
                                 <div class="form-group">

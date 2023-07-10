@@ -116,7 +116,7 @@ $db_host = 'localhost';
         });
     </script>
     <script src="/adm/js/jquery.bootstrap-growl.js"></script>
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         $(function() {
             setTimeout(function() {
                 $.bootstrapGrowl("Welcome To The Dashboard !", {
@@ -126,7 +126,7 @@ $db_host = 'localhost';
                 });
             }, );
         });
-    </script>
+    </script> --}}
     </body>
 
     </html>

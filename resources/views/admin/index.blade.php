@@ -32,11 +32,6 @@ $db_host = 'localhost';
                 <div class="row text-center">
                     <div class="col-sm-12">
                         <h1 class="welcome-admin-heading">Welcome Admin</h1>
-                        @if (session('error'))
-                            <div class="alert alert-danger">
-                                {{ session('error') }}
-                            </div>
-                        @endif
                         <form action="/admin/login" method="post">
                             @csrf
                             <input type="text" name="username" class="admin-name admin-inputs" placeholder="Username"

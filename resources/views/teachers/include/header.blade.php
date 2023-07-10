@@ -103,31 +103,31 @@ $db_host = 'localhost';
                         <div class="nav-link" style="padding-bottom: 0px">
                             <div class="user-image">
                                 <?php
-                                    $sid = session('tid');
-                                    $data = mysqli_query($sql_con, "select *from teachers where id ='$sid'");
-                                    if (!$data) {
-                                        die('Query error: ' . mysqli_error($sql_con));
-                                    }
-                                    $row = mysqli_fetch_array($data);
-                                    $id = $row['id'];
-                                    $img = $row['img'];                                
+                                $sid = session('tid');
+                                $data = mysqli_query($sql_con, "select *from teachers where id ='$sid'");
+                                if (!$data) {
+                                    die('Query error: ' . mysqli_error($sql_con));
+                                }
+                                $row = mysqli_fetch_array($data);
+                                $id = $row['id'];
+                                $img = $row['img'];
                                 ?>
                                 <img src="<?php echo '/storage/' . $img; ?>" alt="">
                             </div>
                             <br>
                             <div class="user-info">
                                 <?php
-                                    $data = mysqli_query($sql_con, "select * from teachers where id = '$sid'");
-                                    if (!$data) {
-                                        die('Query error: ' . mysqli_error($sql_con));
-                                    }
-                                    $row = mysqli_fetch_array($data);
-                                    $name = $row['firstname'];
-                                    $name2 = $row['lastname'];
+                                $data = mysqli_query($sql_con, "select * from teachers where id = '$sid'");
+                                if (!$data) {
+                                    die('Query error: ' . mysqli_error($sql_con));
+                                }
+                                $row = mysqli_fetch_array($data);
+                                $name = $row['firstname'];
+                                $name2 = $row['lastname'];
                                 ?>
-                                <p class="profile-name"><?php 
-                                    echo $name . ' ' . $name2;
-                                 ?><br><small class="text-muted"><span
+                                <p class="profile-name"><?php
+                                echo $name . ' ' . $name2;
+                                ?><br><small class="text-muted"><span
                                             class="text-muted status-indicator online"></span> Online</small></p><br>
                             </div>
                         </div>
@@ -239,3 +239,41 @@ $db_host = 'localhost';
                     </li>
                 </ul>
             </nav>
+            <div id="alertContainer" class="p-3" style="position: fixed;top: 18px;right: 24px;z-index: 9999;">
+            </div>
+            <script>
+                function showAlert(message, type) {
+                    var alertContainer = document.getElementById('alertContainer');
+
+                    var alertDiv = document.createElement('div');
+                    alertDiv.classList.add('alert', 'alert-dismissible', 'fade', 'show');
+                    alertDiv.setAttribute('role', 'alert');
+                    alertDiv.classList.add('alert-' + type);
+
+                    alertDiv.innerHTML = `
+                        ${message}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    `;
+
+                    alertContainer.appendChild(alertDiv);
+
+                    setTimeout(function() {
+                        alertDiv.remove();
+                    }, 4000);
+                }
+
+                @if (session('success'))
+                    showAlert('{{ session('success') }}', 'success');
+                @endif
+
+                @if (session('error'))
+                    showAlert('{{ session('error') }}', 'danger');
+                @endif
+
+                @if (session('warning'))
+                    showAlert('{{ session('warning') }}', 'warning');
+                @endif
+
+            </script>

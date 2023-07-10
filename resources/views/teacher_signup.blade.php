@@ -16,11 +16,6 @@ $db_host = 'localhost';
                     <div class="outerdiv Signup-outerdiv">
                         <h1 class="Login-text">Teacher Signup Form</h1>
                         <div class="InnerDiv InnerDiv2">
-                            @if (session('error'))
-                            <div class="alert alert-danger">
-                                {{ session('error') }}
-                            </div>
-                        @endif
                             <form action="/teaches/signup" method="post" enctype="multipart/form-data"
                                 onsubmit="return validate();">
                                 @csrf

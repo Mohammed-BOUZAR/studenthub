@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [Controller::class, 'index']);
 Route::get('/about', [Controller::class, 'about']);
+Route::post('/subscribe', [Controller::class, 'subscribe']);
 
 Route::group(['prefix' => 'admin'], function () {
     // Admin routes here

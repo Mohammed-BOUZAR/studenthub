@@ -18,7 +18,6 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminAuthController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -206,9 +205,9 @@ class AdminAuthController extends Controller
 
         if ($username && $password && $admin) {
             session(['id' => $request->input('password')]);
-            return redirect('/admin/dashboard'); // Replace 'dashboard' with your actual route name
+            return redirect('/admin/dashboard')->with('success', 'Welcome To The Dashboard !'); // Replace 'dashboard' with your actual route name
         } else {
-            return redirect()->back()->with('error', 'Wrong information, please try again!');
+            return back()->with('error', 'Wrong information, please try again!');
         }
     }
 
@@ -404,9 +403,9 @@ class AdminAuthController extends Controller
         $quiz = Quiz::find($id);
         if ($quiz) {
             $quiz->delete();
-            return redirect()->back()->with('success', 'Deleted with successfully.');
+            return back()->with('success', 'Deleted with successfully.');
         } else {
-            return redirect()->back()->with('error', 'Error.');
+            return back()->with('error', 'Error.');
         }
     }
 
@@ -584,9 +583,9 @@ class AdminAuthController extends Controller
         $notice = Noticeboard::find($id);
         if ($notice) {
             $notice->delete();
-            return redirect()->back()->with('success', 'Deleted with successfully.');
+            return back()->with('success', 'Deleted with successfully.');
         } else {
-            return redirect()->back()->with('error', 'Error.');
+            return back()->with('error', 'Error.');
         }
     }
 
@@ -642,9 +641,9 @@ class AdminAuthController extends Controller
         $material = Material::find($id);
         if ($material) {
             $material->delete();
-            return redirect()->back()->with('success', 'Deleted with successfully.');
+            return back()->with('success', 'Deleted with successfully.');
         } else {
-            return redirect()->back()->with('error', 'Error.');
+            return back()->with('error', 'Error.');
         }
     }
 
@@ -697,9 +696,9 @@ class AdminAuthController extends Controller
         $result = Result::find($id);
         if ($result) {
             $result->delete();
-            return redirect()->back()->with('success', 'Deleted with successfully.');
+            return back()->with('success', 'Deleted with successfully.');
         } else {
-            return redirect()->back()->with('error', 'Error.');
+            return back()->with('error', 'Error.');
         }
     }
 
