@@ -96,7 +96,7 @@ class StudentAuthController extends Controller
                 return redirect('/students/dashboard');
             } else {
                 echo "<script>alert('Invalid information please try again')</script>";
-                return redirect()->back()->with('error', 'Invalid information please try again!');
+                return back()->with('error', 'Invalid information please try again!');
             }
         }
     }
@@ -130,9 +130,9 @@ class StudentAuthController extends Controller
     {
         //
         $email = $request->input('email');
-        $emailExists = DB::table('students')->where('stdemail', $email)->exists();
+        $emailExists = Student::where('stdemail', $email)->first();
         if ($emailExists) {
-            return redirect()->back()->withErrors(['email' => 'Email already exists']);
+            return back()->with('error', 'Email already exists');
         }
 
         $image = $request->file('img');

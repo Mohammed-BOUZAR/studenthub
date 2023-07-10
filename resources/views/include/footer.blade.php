@@ -48,14 +48,14 @@
 
 	<!-- SCRIPT LINKS Start -->
 
-    <!-- <script type="text/javascript" src="js/jquery-3.3.1.slim.min.js"></script> -->
-    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-    <script type="text/javascript" src="js/SmoothScroll.min.js"></script>
-    <script type="text/javascript" src="js/popper.min.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+    <!-- <script type="text/javascript" src="/js/jquery-3.3.1.slim.min.js"></script> -->
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="/js/SmoothScroll.min.js"></script>
+    <script type="text/javascript" src="/js/popper.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
 
     <!-- Back to to move -->
-    <script type="text/javascript" src="js/backtotop.js"></script>
+    <script type="text/javascript" src="/js/backtotop.js"></script>
     
 
 	<!-- NAVBAR BACKGROUND COLOR CLASS ADD -->

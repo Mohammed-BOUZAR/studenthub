@@ -16,7 +16,7 @@ $db_host = 'localhost';
                     <div class="outerdiv Signup-outerdiv">
                         <h1 class="Login-text">Teacher Signup Form</h1>
                         <div class="InnerDiv InnerDiv2">
-                            <form action="/teaches/signup" method="post" enctype="multipart/form-data"
+                            <form action="/teachers/signup" method="post" enctype="multipart/form-data"
                                 onsubmit="return validate();">
                                 @csrf
                                 <div class="form-row">
@@ -67,7 +67,7 @@ $db_host = 'localhost';
                                             required="true">
                                             <option value="">Department</option>
                                             <?php 
-                                            $data = mysqli_query($sql_con,"Select *from departments");
+                                            $data = mysqli_query($sql_con,"Select *from departments where deleted_at is null");
                                             while ($row = mysqli_fetch_array($data)){
                                              ?>
                                             <option value="<?php echo $row['id']; ?>"><?php echo $row['depname']; ?></option>
@@ -160,50 +160,7 @@ $db_host = 'localhost';
         }
     }
 </script>
-<script src="js/customUpload2.js"></script>
+<script src="/js/customUpload2.js"></script>
 </body>
 
 </html>
-<?php
-if (isset($_POST['submit'])) {
-    $email = $_POST['email'];
-    $data = mysqli_query($sql_con, 'select emailfld from teachers');
-    while ($row = mysqli_fetch_array($data)) {
-        $emaildb = $row['emailfld'];
-        if ($emaildb == $email) {
-            echo "<script>document.getElementById('Semail').innerHTML = '** Email already exist'; </script>";
-            exit();
-        }
-    }
-    $folder = 'uploads/';
-    $filename = $_FILES['img']['name'];
-    $unique = uniqid() . $filename;
-    $temname = $_FILES['img']['tmp_name'];
-    $size = $_FILES['img']['size'];
-
-    $target = $folder . basename($unique);
-    $filetype = strtolower(pathinfo($target, PATHINFO_EXTENSION));
-    if ($filetype != 'jpg' && $filetype != 'png' && $filetype != 'jpeg') {
-        echo "<script>document.getElementById('imgerror').innerHTML = '** File is not an image'; </script>";
-        exit();
-    } elseif ($size > 2097152) {
-        echo "<script>document.getElementById('imgerror').innerHTML = '** File is larger than 2MP';</script>";
-        exit();
-    } else {
-        move_uploaded_file($temname, $target);
-        $fname = $_POST['fname'];
-        $lname = $_POST['lname'];
-        $number = $_POST['number'];
-        $email = $_POST['email'];
-        $pass = $_POST['pass'];
-        $Cpass = $_POST['Cpass'];
-        $gender = $_POST['gender'];
-        $depart = $_POST['dep'];
-        $address = $_POST['address'];
-        $status = 0;
-        mysqli_query($sql_con, "insert into teachers (firstname,lastname,tecnumber,emailfld,password,gender,dep,img,address,status) values ('$fname','$lname','$number','$email','$Cpass','$gender','$depart','$target','$address','$status')");
-        echo "<script>alert('Successfully Registered Wait for account approval')</script>";
-        echo "<script>window.location = 'teacherlogin.php'</script>";
-    }
-}
-?>

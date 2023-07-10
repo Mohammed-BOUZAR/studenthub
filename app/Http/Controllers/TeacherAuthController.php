@@ -43,11 +43,13 @@ class TeacherAuthController extends Controller
         return view('teachers.dashboard');
     }
 
-    public function teacherLogin() {
+    public function teacherLogin()
+    {
         return view('teacherlogin');
     }
 
-    public function teacherSignup() {
+    public function teacherSignup()
+    {
         return view('teacher_signup');
     }
 
@@ -197,7 +199,7 @@ class TeacherAuthController extends Controller
                     return redirect('/teachers/dashboard');
                 } else {
                     echo "<script>alert('Invalid information please try again')</script>";
-                    return redirect()->back()->with('error', 'Invalid information please try again!');
+                    return back()->with('error', 'Invalid information please try again!');
                 }
             }
         } catch (Exception $e) {
@@ -234,9 +236,9 @@ class TeacherAuthController extends Controller
     {
         //
         $email = $request->input('email');
-        $emailExists = Teacher::where('emailfld', $email)->exists();
+        $emailExists = Teacher::where('emailfld', $email)->first();
         if ($emailExists) {
-            return redirect()->back()->withErrors(['email' => 'Email already exists']);
+            return back()->with('error', 'Email already exists');
         }
 
         $image = $request->file('img');
@@ -334,9 +336,9 @@ class TeacherAuthController extends Controller
         $quiz = Quiz::find($id);
         if ($quiz) {
             $quiz->delete();
-            return redirect()->back()->with('success', 'Deleted with successfully.');
+            return back()->with('success', 'Deleted with successfully.');
         } else {
-            return redirect()->back()->with('error', 'Error.');
+            return back()->with('error', 'Error.');
         }
     }
 
@@ -403,9 +405,9 @@ class TeacherAuthController extends Controller
         $notice = Noticeboard::find($id);
         if ($notice) {
             $notice->delete();
-            return redirect()->back()->with('success', 'Deleted with successfully.');
+            return back()->with('success', 'Deleted with successfully.');
         } else {
-            return redirect()->back()->with('error', 'Error.');
+            return back()->with('error', 'Error.');
         }
     }
 
@@ -461,9 +463,9 @@ class TeacherAuthController extends Controller
         $material = Material::find($id);
         if ($material) {
             $material->delete();
-            return redirect()->back()->with('success', 'Deleted with successfully.');
+            return back()->with('success', 'Deleted with successfully.');
         } else {
-            return redirect()->back()->with('error', 'Error.');
+            return back()->with('error', 'Error.');
         }
     }
 
@@ -516,9 +518,9 @@ class TeacherAuthController extends Controller
         $result = Result::find($id);
         if ($result) {
             $result->delete();
-            return redirect()->back()->with('success', 'Deleted with successfully.');
+            return back()->with('success', 'Deleted with successfully.');
         } else {
-            return redirect()->back()->with('error', 'Error.');
+            return back()->with('error', 'Error.');
         }
     }
 }

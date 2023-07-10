@@ -30,7 +30,7 @@ $db_host = 'localhost';
                     <div class="outerdiv Signup-outerdiv">
                         <h1 class="Login-text">Student Signup Form</h1>
                         <div class="InnerDiv InnerDiv2">
-                            <form action="students/signup" method="post" enctype="multipart/form-data">
+                            <form action="/students/signup" method="post" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
