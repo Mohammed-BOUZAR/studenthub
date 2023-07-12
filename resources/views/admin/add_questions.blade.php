@@ -1,12 +1,3 @@
-@include('admin.include.header')
-
-<?php
-$db_username = 'root';
-$db_password = '';
-$db_name = 'studenthub';
-$db_host = 'localhost';
-($sql_con = mysqli_connect($db_host, $db_username, $db_password, $db_name)) or die('could not connect to database');
-?>
 
 <!DOCTYPE html>
 <html>
@@ -44,16 +35,25 @@ $db_host = 'localhost';
 
 <body>
     <div class="adminpanel">
-        <form method="post">
+        <form method="post" action="/admin/add_quiz">
+            @csrf
+            <input type="hidden" name="number" id="" value="{{ $numberofqus }}">
+            <input type="hidden" name="dep" id="" value="{{ $dep }}">
+            <input type="hidden" name="sec" id="" value="{{ $sec }}">
+            <input type="hidden" name="sem" id="" value="{{ $sem }}">
+            <input type="hidden" name="sub" id="" value="{{ $sub }}">
+            <input type="hidden" name="date" id="" value="{{ $date }}">
+            <input type="hidden" name="title" id="" value="{{ $title }}">
+            <input type="hidden" name="timelimit" id="" value="{{ $timelimit }}">
             <div class="container">
                 <br><br>
                 <h1>Enter Questions</h1>
                 <br>
                 @php
-                    global $qno;
+                    $qno = $numberofqus;
                     $new = 0;
                 @endphp
-                @for ($i = 1; $i <= $qno; $i++)
+                @for ($i = 1; $i <= $numberofqus; $i++)
                     @php
                         $new++;
                     @endphp
@@ -98,38 +98,9 @@ $db_host = 'localhost';
         </form>
     </div>
 
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/popper.min.js"></script>
+    <script src="/adm/js/jquery-3.3.1.min.js"></script>
+    <script src="/adm/js/bootstrap.min.js"></script>
+    <script src="/adm/js/popper.min.js"></script>
 </body>
 
 </html>
-
-@if (isset($_POST['submit22']))
-    @php
-        $helo = 0;
-        $query = mysqli_query($sql_con, 'SELECT max(id) AS id FROM quiz');
-        while ($row = mysqli_fetch_assoc($query)) {
-            $result = $row['id'];
-            $id = $result + 1;
-        }
-        $qno = $_GET['numberofqus'];
-        for ($i = 1; $i <= $qno; $i++) {
-            $helo++;
-            $qq1 = $_POST['qq1' . $helo];
-            $qn1 = $_POST['q1' . $helo];
-            $qn2 = $_POST['q2' . $helo];
-            $qn3 = $_POST['q3' . $helo];
-            $qno4 = $_POST['q4' . $helo];
-            $right2 = $_POST['ans' . $i];
-            $right = strtolower($right2);
-            mysqli_query($sql_con, "INSERT INTO quiz (id,department,session,semester,subject,quizdate,quiztitle,questions,op1,op2,op3,op4,rightans,quiztime) VALUES ('$id','$dep','$sec','$sem','$sub','$date','$title','$qq1','$qn1','$qn2','$qn3','$qno4','$right','$timelimit')");
-            echo '<script>
-                alert('Quiz added successfully')
-            </script>';
-            echo '<script>
-                window.location = 'add_quiz'
-            </script>';
-        }
-    @endphp
-@endif

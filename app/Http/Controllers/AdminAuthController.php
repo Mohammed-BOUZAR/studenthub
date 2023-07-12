@@ -143,6 +143,21 @@ class AdminAuthController extends Controller
         return view('admin.add_quiz');
     }
 
+    public function add_questions(Request $request)
+    {
+        // dd($request->input('date'));
+        return view('admin.add_questions', [
+            'numberofqus' => $request->input('numberofqus'),
+            'dep' => $request->input('dep'),
+            'sub' => $request->input('subject'),
+            'sec' => $request->input('session'),
+            'sem' => $request->input('semester'),
+            'date' => $request->input('date'),
+            'title' => $request->input('quiztitle'),
+            'timelimit' => $request->input('timelimit')
+        ]);
+    }
+
     public function quiz_detail($id)
     {
         return view('admin.quiz_detail', ['id' => $id]);
@@ -384,18 +399,37 @@ class AdminAuthController extends Controller
 
     public function addQuiz(Request $request)
     {
-        $quiz = new Quiz();
-        $quiz->department = $request->input('dep');
-        $quiz->subject = $request->input('subject');
-        $quiz->session = $request->input('session');
-        $quiz->semester = $request->input('semester');
-        $quiz->quizdate = $request->input('date');
-        $quiz->quiztitle = $request->input('quiztitle');
-        $quiz->questions = $request->input('numberofqus');
-        $quiz->quiztime = $request->input('timelimit');
-        $quiz->save();
+        // dd($request);
+        $quizzes = Quiz::all()->last();
+        if ($quizzes == null) {
+            $id = 1;
+            // return $id;
+        } else {
+            $id = $quizzes->id;
+            // return $id;
+        }
+        // return $quizzes . $quizzes->id;
+        for ($i = 1; $i <= $request->input('number'); $i++) {
+            $quiz = new Quiz();
+            $quiz->id = $id;
+            $quiz->department = $request->input('dep');
+            $quiz->subject = $request->input('sub');
+            $quiz->session = $request->input('sec');
+            $quiz->semester = $request->input('sem');
+            $quiz->quizdate = $request->input('date');
+            $quiz->quiztitle = $request->input('title');
+            $quiz->questions = $request->input('qq1' . $i);
+            $quiz->op1 = $request->input('q1' . $i);
+            $quiz->op2 = $request->input('q2' . $i);
+            $quiz->op3 = $request->input('q3' . $i);
+            $quiz->op4 = $request->input('q4' . $i);
+            $quiz->rightans = $request->input('ans' . $i);
+            $quiz->quiztime = $request->input('timelimit');
+            // echo $i . ' ' . $quiz;
+            $quiz->save();
+        }
 
-        return back()->with('success', 'Quiz added successfully');
+        return redirect('/admin/add_quiz')->with('success', 'Quiz added successfully');
     }
 
     public function deleteQuiz(Request $request, $id)

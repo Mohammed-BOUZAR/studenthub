@@ -58,14 +58,14 @@ $db_host = 'localhost';
                     <p>Department: <span class="details-text"><?php echo $deprow['depname']; ?></span></p>
                     <p>Phone Number: <span class="details-text">{{ $student->snumber }}</span></p>
                     <p>Address: <span class="details-text">{{ $student->address }}</span></p>
-                    <a href="update_student_profile"><button
+                    <a href="/students/update_student_profile"><button
                             class="btn btn-outline-primary btn-rounded profile-btns">Update Profile</button></a>
-                    <a href="" data-toggle="modal" data-target="#exampleModaldep{{ $student->id }} "><button
+                    <a href="" data-toggle="modal" data-target="#exampleModaldep{{ $student->id }}"><button
                             class="btn btn-outline-danger btn-rounded profile-btns btn-delete-pro">Delete
                             Profile</button></a>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModaldep{{ $student->id }} " tabindex="-1" role="dialog"
+                    <div class="modal fade" id="exampleModaldep{{ $student->id }}" tabindex="-1" role="dialog"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -79,7 +79,7 @@ $db_host = 'localhost';
                                     Do you really want to delete your account?
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="delete_student_profile?value={{ $student->id }}"
+                                    <a href="/students/delete_student_profile/{{ $student->id }}"
                                         class="btn btn-primary">YES</a>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
                                 </div>

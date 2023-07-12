@@ -75,7 +75,7 @@ $db_host = 'localhost';
                         $row = mysqli_num_rows($query2);
                         if($row <= 0){
                             echo "<script>alert('Quiz not available or invalid department')</script>";
-                            // echo "<script>window.location='check_quiz.php'</script>";
+                            echo "<script>window.location='check_quiz'</script>";
                             exit();
                            }
                         if($row > 0){

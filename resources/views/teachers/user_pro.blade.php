@@ -67,7 +67,7 @@ $db_host = 'localhost';
                             {{ $teacher->address }}
                         </span>
                     </p>
-                    <a href="update_teacher_profile"><button
+                    <a href="/teachers/update_teacher_profile"><button
                             class="btn btn-outline-primary btn-rounded profile-btns">Update Profile</button></a>
                     <a href="" data-toggle="modal" data-target="#exampleModaldep{{ $teacher->id }}">
                         <button class="btn btn-outline-danger btn-rounded profile-btns btn-delete-pro">Delete
@@ -88,7 +88,7 @@ $db_host = 'localhost';
                                     Do you really want to delete your account?
                                 </div>
                                 <div class="modal-footer">
-                                    <a href="approve_teacher_delete?value={{ $teacher->id }}"
+                                    <a href="/teachers/approve_teacher_delete/{{ $teacher->id }}"
                                         class="btn btn-primary">YES</a>
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
                                 </div>

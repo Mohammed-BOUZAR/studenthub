@@ -21,7 +21,7 @@ $db_host = 'localhost';
         <div class="row text-center">
             <div class="col-md-12">
                 <div class="panel panel2">
-                    <form class="update-pro-form" method="post" action="/student/change_password/{{ session('sid') }}">
+                    <form class="update-pro-form" method="post" action="/students/change_password/{{ session('sid') }}">
                         @csrf
                         <div class="form-row">
                             <div class="form-group col-sm-12">

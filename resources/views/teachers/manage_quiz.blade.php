@@ -48,14 +48,14 @@ $db_host = 'localhost';
                             <tbody>
                                 <?php
                         $tecid = session('tid');
-                        $tecdata = mysqli_query($sql_con,"select dep from teachers where id = '$tecid' and status = 1 and deleted_at is null");
+                        $tecdata = mysqli_query($sql_con,"select * from teachers where id = '$tecid' and status = 1 and deleted_at is null");
                         if (!$tecdata) {
                                     die('Query error: ' . mysqli_error($sql_con));
                                 }
                         $tecrow = mysqli_fetch_array($tecdata);
                         $depid = $tecrow['dep'];
 
-                        $query = mysqli_query($sql_con,"SELECT * FROM quizzes where department = '$depid' and deleted_at is null");
+                        $query = mysqli_query($sql_con,"SELECT * FROM quizzes where department = '$depid' and deleted_at is null GROUP BY id");
                         if (!$query) {
                                     die('Query error: ' . mysqli_error($sql_con));
                                 }

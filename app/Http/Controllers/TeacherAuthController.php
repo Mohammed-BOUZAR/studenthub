@@ -78,6 +78,21 @@ class TeacherAuthController extends Controller
         return view('teachers.add_quiz');
     }
 
+    public function add_questions(Request $request)
+    {
+        // dd($request->input('date'));
+        return view('teachers.add_questions', [
+            'numberofqus' => $request->input('numberofqus'),
+            'dep' => $request->input('dep'),
+            'sub' => $request->input('subject'),
+            'sec' => $request->input('session'),
+            'sem' => $request->input('semester'),
+            'date' => $request->input('date'),
+            'title' => $request->input('quiztitle'),
+            'timelimit' => $request->input('timelimit')
+        ]);
+    }
+
     public function quiz_detail($id)
     {
         return view('teachers.quiz_detail', ['id' => $id]);
@@ -115,6 +130,7 @@ class TeacherAuthController extends Controller
 
     public function manage_quiz()
     {
+        // dd(session('tid'));
         return view('teachers.manage_quiz');
     }
 
@@ -186,6 +202,8 @@ class TeacherAuthController extends Controller
                 $value1 = $request->input('email');
                 $value2 = $request->input('password');
                 $data = Teacher::where('emailfld', $value1)->where('password', $value2)->get();
+                if ($data[0]->status == 0)
+                    return back()->with('warning', 'please wait while your account is authenticated!');
                 $datarow = count($data);
                 if ($datarow > 0) {
                     $row = $data[0];
@@ -264,6 +282,38 @@ class TeacherAuthController extends Controller
         return redirect('/teachers/login')->with('success', 'Successfully Registered. Please wait for account approval');
     }
 
+    public function updateTeacherProfile(Request $request, $id)
+    {
+        //
+        $teacher = Teacher::find($id);
+        $email = $request->input('email');
+        $emailExists = Teacher::where('emailfld', $email)->first();
+        if ($emailExists && $teacher->emailfld != $email) {
+            return back()->with('error', 'Email already exists');
+        }
+
+        $image = $request->file('img');
+        $filename = $request->input('fname') . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+        $folder = $image->storeAs('public/uploads', $filename);
+        $path = 'uploads/' . $filename;
+
+        $data = [
+            'firstname' => $request->input('fname'),
+            'lastname' => $request->input('lname'),
+            'tecnumber' => $request->input('number'),
+            'emailfld' => $email,
+            'gender' => $request->input('gender'),
+            'dep' => $request->input('dep'),
+            'img' => $path,
+            'address' => $request->input('address'),
+            'status' => 0
+        ];
+
+        DB::table('teachers')->update($data);
+
+        return redirect('/teachers/user_pro')->with('success', 'Successfully Registered.');
+    }
+
     /**
      * Display the specified resource.
      *
@@ -276,6 +326,7 @@ class TeacherAuthController extends Controller
         // return session('tid');
         return view('teachers.user_pro', [
             'teacher' => Teacher::join('departments', 'departments.id', '=', 'teachers.dep')
+                ->select('teachers.*')
                 ->where('teachers.id', session('tid'))
                 ->first(),
         ]);
@@ -292,17 +343,6 @@ class TeacherAuthController extends Controller
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -317,18 +357,29 @@ class TeacherAuthController extends Controller
 
     public function addQuiz(Request $request)
     {
-        $quiz = new Quiz();
-        $quiz->department = $request->input('dep');
-        $quiz->subject = $request->input('subject');
-        $quiz->session = $request->input('session');
-        $quiz->semester = $request->input('semester');
-        $quiz->quizdate = $request->input('date');
-        $quiz->quiztitle = $request->input('quiztitle');
-        $quiz->questions = $request->input('numberofqus');
-        $quiz->quiztime = $request->input('timelimit');
-        $quiz->save();
+        // dd($request);
+        $quizzes = Quiz::all()->last();
+        return $quizzes;
+        for ($i = 1; $i <= $request->input('number'); $i++) {
+            $quiz = new Quiz();
+            $quiz->department = $request->input('dep');
+            $quiz->subject = $request->input('sub');
+            $quiz->session = $request->input('sec');
+            $quiz->semester = $request->input('sem');
+            $quiz->quizdate = $request->input('date');
+            $quiz->quiztitle = $request->input('title');
+            $quiz->questions = $request->input('qq1' . $i);
+            $quiz->op1 = $request->input('q1' . $i);
+            $quiz->op2 = $request->input('q2' . $i);
+            $quiz->op3 = $request->input('q3' . $i);
+            $quiz->op4 = $request->input('q4' . $i);
+            $quiz->rightans = $request->input('ans' . $i);
+            $quiz->quiztime = $request->input('timelimit');
+            // echo $i . ' ' . $quiz;
+            $quiz->save();
+        }
 
-        return back()->with('success', 'Quiz added successfully');
+        return redirect('/teachers/add_quiz')->with('success', 'Quiz added successfully');
     }
 
     public function deleteQuiz(Request $request, $id)
@@ -521,6 +572,18 @@ class TeacherAuthController extends Controller
             return back()->with('success', 'Deleted with successfully.');
         } else {
             return back()->with('error', 'Error.');
+        }
+    }
+
+    public function approveTeacherDelete(Request $request, $id)
+    {
+        $teacher = Teacher::find($id);
+
+        if ($teacher != null) {
+            $teacher->delete();
+            return redirect('/teachers/login')->with('success', 'Deleted with successfully');
+        } else {
+            return back()->with('warning', 'Error');
         }
     }
 }

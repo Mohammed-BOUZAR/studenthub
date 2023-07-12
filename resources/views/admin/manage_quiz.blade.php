@@ -48,7 +48,7 @@ $db_host = 'localhost';
                             </thead>
                             <tbody>
                                 <?php
-                        $query = mysqli_query($sql_con,"SELECT * FROM quizzes  where deleted_at is null");
+                        $query = mysqli_query($sql_con,"SELECT * FROM quizzes  where deleted_at is null GROUP BY id");
                         if (!$query) {
                                     die('Query error: ' . mysqli_error($sql_con));
                                 } 

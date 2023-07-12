@@ -157,7 +157,54 @@ class StudentAuthController extends Controller
 
         DB::table('students')->insert($data);
 
-        return redirect('students/login')->with('success', 'You are successfully registered');
+        return redirect('/students/login')->with('success', 'You are successfully registered');
+    }
+
+    public function updateStudentProfile(Request $request, $id)
+    {
+        //
+        $student = Student::find($id);
+        $email = $request->input('email');
+        $emailExists = Student::where('stdemail', $email)->first();
+        if ($emailExists && $student->stdemail != $email) {
+            return back()->with('error', 'Email already exists');
+        }
+
+        $image = $request->file('img');
+        $filename = $request->input('fname') . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+        $folder = $image->storeAs('public/suploads', $filename);
+        $path = 'suploads/' . $filename;
+
+        $data = [
+            'firstname' => $request->input('fname'),
+            'lastname' => $request->input('lname'),
+            'fathername' => $request->input('ffname'),
+            'rollnum' => $request->input('rollnum'),
+            // 'password' => $request->input('Cpass'),
+            'stdemail' => $email,
+            'session' => $request->input('session'),
+            'gender' => $request->input('gender'),
+            'dep' => $request->input('dep'),
+            'snumber' => $request->input('number'),
+            'img' => $path,
+            'address' => $request->input('address')
+        ];
+
+        DB::table('students')->update($data);
+
+        return redirect('/students/user_pro')->with('success', 'You are successfully updated');
+    }
+
+    public function deleteStudentProfile(Request $request, $id)
+    {
+        $student = Student::find($id);
+
+        if ($student != null) {
+            $student->delete();
+            return redirect('/students/login')->with('success', 'Deleted with successfully');
+        } else {
+            return back()->with('warning', 'Error');
+        }
     }
 
     /**
@@ -171,6 +218,7 @@ class StudentAuthController extends Controller
         //
         return view('students.user_pro', [
             'student' => Student::join('departments', 'departments.id', '=', 'students.dep')
+                ->select('students.*')
                 ->where('students.id', session('sid'))
                 ->first(),
         ]);

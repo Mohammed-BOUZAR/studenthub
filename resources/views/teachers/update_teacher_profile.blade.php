@@ -31,8 +31,9 @@ $db_host = 'localhost';
                     ?>
                     <img src="<?php echo '/storage/' . $tecimg; ?>" alt="" class="profile-image">
                     <hr>
-                    <form onsubmit="return myfun();" class="update-pro-form" action="" method="post"
+                    <form onsubmit="return myfun();" class="update-pro-form" action="/teachers/update_profile/<?php echo $row['id']; ?>" method="post"
                         enctype="multipart/form-data">
+                        @csrf
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <input value="<?php echo $row['firstname']; ?>" name="fname" type="text"

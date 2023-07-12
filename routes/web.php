@@ -50,6 +50,7 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/add_result', [AdminAuthController::class, 'add_result']);
     Route::get('/add_material', [AdminAuthController::class, 'add_material']);
     Route::get('/add_quiz', [AdminAuthController::class, 'add_quiz']);
+    Route::post('/add_questions', [AdminAuthController::class, 'add_questions']);
     Route::get('/quiz_detail/{id}', [AdminAuthController::class, 'quiz_detail']);
     Route::get('/update_noticeboard/{id}', [AdminAuthController::class, 'update_noticeboard']);
     Route::get('/update_result/{id}', [AdminAuthController::class, 'update_result']);
@@ -106,6 +107,7 @@ Route::group(['prefix' => 'teachers'], function () {
     Route::get('/add_result', [TeacherAuthController::class, 'add_result']);
     Route::get('/add_material', [TeacherAuthController::class, 'add_material']);
     Route::get('/add_quiz', [TeacherAuthController::class, 'add_quiz']);
+    Route::post('/add_questions', [TeacherAuthController::class, 'add_questions']);
     Route::get('/quiz_detail/{id}', [TeacherAuthController::class, 'quiz_detail']);
     Route::get('/manage_noticeboard', [TeacherAuthController::class, 'manage_noticeboard']);
     Route::get('/update_noticeboard/{id}', [TeacherAuthController::class, 'update_noticeboard']);
@@ -129,7 +131,8 @@ Route::group(['prefix' => 'teachers'], function () {
     Route::post('/signup', [TeacherAuthController::class, 'store']);
     Route::post('/login', [TeacherAuthController::class, 'login']);
     Route::get('/logout', [TeacherAuthController::class, 'logout']);
-    Route::post('/update_profile', [TeacherAuthController::class, 'update']);
+    Route::post('/update_profile/{id}', [TeacherAuthController::class, 'updateTeacherProfile']);
+    Route::get('/approve_teacher_delete/{id}', [TeacherAuthController::class, 'approveTeacherDelete']);
     Route::post('/add_noticeboard', [TeacherAuthController::class, 'addNoticeBoard']);
     Route::post('/add_result', [TeacherAuthController::class, 'addResult']);
     Route::post('/add_material', [TeacherAuthController::class, 'addMaterial']);
@@ -162,6 +165,8 @@ Route::group(['prefix' => 'students'], function () {
     Route::post('/add_subject', [StudentAuthController::class, 'addSubject']);
     Route::post('/change_password/{id}', [StudentAuthController::class, 'updatePassword']);
     Route::get('/user_pro', [StudentAuthController::class, 'show']);
+    Route::post('/update_profile/{id}', [StudentAuthController::class, 'updateStudentProfile']);
+    Route::get('/delete_student_profile/{id}', [StudentAuthController::class, 'deleteStudentProfile']);
     Route::get('/update_student_profile', [StudentAuthController::class, 'update_student_profile']);
     Route::get('/change_password', [StudentAuthController::class, 'change_password']);
     Route::get('/manage_noticeboard', [StudentAuthController::class, 'manage_noticeboard']);

@@ -68,7 +68,7 @@ $db_host = 'localhost';
           <div class="row text-center">
             <div class="col-md-12">
               <div class="panel panel2">
-                <form class="update-pro-form" method="post" action="/admin/add_quiz">
+                <form class="update-pro-form" method="post" action="/admin/add_questions">
                   @csrf
                   <label>Select Department</label>
                       <select id="inputState3" name="dep" class="col-sm-12 form-control" required="true">
@@ -97,7 +97,7 @@ $db_host = 'localhost';
                           $data = mysqli_query($sql_con,"Select *from semesters where deleted_at is null");
                           while ($row = mysqli_fetch_array($data)){
                         ?>
-                          <option value="<?php echo $row['id'] ?>"><?php echo $row['session'] ?></option>
+                          <option value="<?php echo $row['id'] ?>"><?php echo $row['semester'] ?></option>
                         <?php } ?>
                       </select><br>
                        <label>Select Subject</label>
@@ -107,7 +107,7 @@ $db_host = 'localhost';
                           $data = mysqli_query($sql_con,"Select *from subjects where deleted_at is null");
                           while ($row = mysqli_fetch_array($data)){
                         ?>
-                          <option value="<?php echo $row['id'] ?>"><?php echo $row['session'] ?></option>
+                          <option value="<?php echo $row['id'] ?>"><?php echo $row['sname'] ?></option>
                         <?php } ?>
                       </select><br>
                       

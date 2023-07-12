@@ -46,7 +46,7 @@ $db_host = 'localhost';
                     ?>
                     <img src="<?php echo '/storage/' . $stdimg; ?>" alt="" class="profile-image">
                     <hr>
-                    <form action="" method="post" enctype="multipart/form-data" class="update-pro-form"
+                    <form action="/students/update_profile/<?php echo $row['id']; ?>" method="post" enctype="multipart/form-data" class="update-pro-form"
                         onsubmit=" return myfun2();">
                         @csrf
                         <div class="form-row">
